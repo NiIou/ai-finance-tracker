@@ -1,4 +1,5 @@
 <?php
+require_once 'db.php';
 header('Content-Type: application/json');
 
 // Получаем данные от фронтенда
@@ -14,7 +15,7 @@ $userText = $request['text'];
 
 // --- НАСТРОЙКИ API ---
 // ВСТАВЬ СВОЙ КЛЮЧ СЮДА:
-$apiKey = 'AIzaSyDUx2xs7jahH21Tse4M7H6bZN1W5QjdyJs'; 
+$apiKey = 'AIzaSyCzD_pMcqI0rVdqPa_D-dP1jpm2qJ1MoBE'; 
 
 // Используем быструю модель Gemini 1.5 Flash
 $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' . $apiKey;
@@ -65,6 +66,20 @@ if (isset($responseData['candidates'][0]['content']['parts'][0]['text'])) {
     $aiText = preg_replace('/```json/i', '', $aiText);
     $aiText = preg_replace('/```/i', '', $aiText);
     $aiText = trim($aiText);
+
+    // --- НАЧАЛО СОХРАНЕНИЯ В БАЗУ ---
+    $aiData = json_decode($aiText, true);
+
+    if (isset($aiData['items']) && is_array($aiData['items'])) {
+        $stmt = $pdo->prepare("INSERT INTO expenses (category, price, created_at) VALUES (:category, :price, NOW())");
+        foreach ($aiData['items'] as $item) {
+            $stmt->execute([
+                'category' => $item['category'],
+                'price' => $item['price'] 
+            ]);
+        }
+    }
+    // --- КОНЕЦ СОХРАНЕНИЯ В БАЗУ ---
 
     // Отправляем чистый JSON обратно в браузер
     echo $aiText;
