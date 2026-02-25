@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Smart Finance Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Expense Tracker 🧠</h1>
+            <p>Describe your expenses in plain text, and AI will calculate and categorize them.</p>
+        </header>
+
+        <main>
+            <form id="expense-form">
+                <textarea id="expense-input" rows="4" placeholder="For example: Spent 1500 UAH on a new knife, 300 on groceries, and 150 on coffee..." required></textarea>
+                <button type="submit" id="submit-btn">Analyze Expenses</button>
+            </form>
+
+            <div id="loading" class="hidden">AI is thinking... ⏳</div>
+
+            <div id="results" class="hidden">
+                <h2>Result:</h2>
+                <ul id="categories-list"></ul>
+                <div class="total">
+                    <strong>Total for the day: </strong> <span id="total-sum">0</span> UAH
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
