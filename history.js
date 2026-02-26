@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const historyList = document.getElementById('historyList');
 
     try {
-        // Стучимся к нашему PHP-грузчику
         const response = await fetch('get_expenses.php');
         const result = await response.json();
 
@@ -19,21 +18,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Очищаем надпись "Загрузка..."
             historyList.innerHTML = '';
 
-            // Перебираем каждую трату из базы и создаем для нее красивую карточку
+         // Перебираем каждую трату и создаем для нее красивую темную карточку
             expenses.forEach(item => {
                 const div = document.createElement('div');
-                div.className = 'flex justify-between items-center bg-gray-50 p-4 rounded-lg border shadow-sm mb-2';
+                div.className = 'expense-card'; 
 
                 div.innerHTML = `
-                    <div>
-                        <span class="font-bold text-lg">${item.category}</span>
-                        <span class="text-xs text-gray-500 block mt-1">🕒 ${item.created_at}</span>
+                    <div class="expense-info">
+                        <span class="expense-title">${item.category}</span>
+                        <span class="expense-date">🕒 ${item.created_at}</span>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <span class="font-bold text-xl">${item.price} ₴</span>
-                        <button onclick="deleteExpense(${item.id})" class="text-red-500 hover:text-red-700 transition-colors" title="Удалить">
-                            🗑️
-                        </button>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="expense-price">${item.price} ₴</span>
+                        <button onclick="deleteExpense(${item.id})" class="delete-btn" title="Удалить">🗑️</button>
                     </div>
                 `;
                 historyList.appendChild(div);
@@ -47,10 +44,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-// Функция удаления (пока это просто болванка, PHP для нее мы напишем следом)
 async function deleteExpense(id) {
     if (!confirm('Точно удалить эту запись?')) return;
     
-    // Пока просто выводим сообщение, чтобы проверить, что кнопка работает и ловит правильный ID
-    alert('Кнопка работает! Мы пытаемся удалить запись с ID: ' + id + '. Сейчас напишем для этого PHP-скрипт!');
+    try {
+        // Отправляем запрос на наш новый PHP-скрипт
+        const response = await fetch('delete_expense.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: id })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            // Если удалилось успешно - просто перезагружаем страницу, чтобы список обновился
+            location.reload();
+        } else {
+            alert('Ошибка при удалении: ' + result.error);
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Не удалось связаться с сервером.');
+    }
 }

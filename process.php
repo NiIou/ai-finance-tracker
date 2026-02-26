@@ -14,13 +14,11 @@ if (!isset($request['text']) || empty(trim($request['text']))) {
 $userText = $request['text'];
 
 // --- НАСТРОЙКИ API ---
-// ВСТАВЬ СВОЙ КЛЮЧ СЮДА:
-$apiKey = 'API'; 
+$apiKey = 'Your API'; 
 
-// Используем быструю модель Gemini 1.5 Flash
 $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' . $apiKey;
 
-// Формируем жесткий промпт, чтобы ИИ отдавал ТОЛЬКО чистый JSON
+//Промпт
 $systemPrompt = "You are a smart financial assistant. Analyze the user's input about expenses. 
 Return strictly a JSON object with TWO keys: 'items' and 'total_sum'. 
 'items' should be an array of objects, where each object has 'category' (string, with a suitable emoji, e.g., '🛒 Groceries') and 'price' (number). 

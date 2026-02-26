@@ -46,7 +46,7 @@ form.addEventListener('submit', async function (e) {
             categories_list.appendChild(li);
         });
 
-        // Отрисовка общей суммы (предполагаю, что в HTML есть тег с id="total-sum")
+        // Отрисовка общей суммы
         const totalSumElement = document.getElementById('total-sum');
         if (totalSumElement) {
             totalSumElement.textContent = data.total_sum + ' ₴';

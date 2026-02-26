@@ -28,7 +28,7 @@ header {
 }
 
 header h1 {
-    color: #ff6b6b;
+    color: #8b5cf6; 
     margin-bottom: 10px;
 }
 
@@ -46,7 +46,7 @@ textarea {
 
 textarea:focus {
     outline: none;
-    border-color: #ff6b6b;
+    border-color: #8b5cf6; 
 }
 
 button {
@@ -54,7 +54,7 @@ button {
     padding: 15px;
     border: none;
     border-radius: 8px;
-    background-color: #ff6b6b;
+    background-color: #8b5cf6; 
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -63,7 +63,7 @@ button {
 }
 
 button:hover {
-    background-color: #ff5252;
+    background-color: #7c3aed; 
 }
 
 button:disabled {
@@ -104,15 +104,14 @@ button:disabled {
 .total {
     font-size: 18px;
     text-align: right;
-    color: #ff6b6b;
+    color: #8b5cf6; 
 }
 
 /* Кнопка перехода в историю */
-/* Кнопка перехода в историю */
 .history-btn {
-    display: block; /* Меняем с inline-block на block для центровки */
-    width: fit-content; /* Чтобы кнопка не растянулась на всю ширину экрана */
-    margin: 20px auto 30px; /* 20px отступ сверху (от Анализа), auto (по центру), 30px снизу */
+    display: block; 
+    width: fit-content; 
+    margin: 20px auto 30px; 
     
     background-color: #f3f4f6;
     color: #1f2937;
@@ -125,11 +124,65 @@ button:disabled {
 }
 
 .history-btn:hover {
-    background-color: #e5e7eb; /* Чуть темнее при наведении */
+    background-color: #e5e7eb; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px); /* Эффект небольшого поднятия кнопки */
+    transform: translateY(-2px); 
 }
 
 .history-btn:active {
-    transform: translateY(0); /* Кнопка "нажимается" при клике */
+    transform: translateY(0); 
+}
+
+/* --- СТИЛИ ДЛЯ КАРТОЧЕК ИСТОРИИ --- */
+.expense-card {
+    background-color: #252525;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 12px;
+    display: flex !important; 
+    justify-content: space-between !important; 
+    align-items: center !important;
+    transition: border-color 0.2s;
+}
+
+.expense-card:hover {
+    border-color: #8b5cf6; 
+}
+
+.expense-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.expense-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.expense-date {
+    color: #aaa;
+    font-size: 0.85rem;
+}
+
+.expense-price {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #8b5cf6;
+}
+
+button.delete-btn {
+    width: auto !important; 
+    background-color: transparent !important; 
+    padding: 5px !important;
+    font-size: 1.2rem;
+    color: #fff;
+    transition: transform 0.2s;
+}
+
+button.delete-btn:hover {
+    background-color: transparent !important; 
+    transform: scale(1.2);
 }

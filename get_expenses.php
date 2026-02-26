@@ -3,7 +3,6 @@ require_once 'db.php';
 header('Content-Type: application/json');
 
 try {
-    // Делаем запрос: ДОСТАНЬ ВСЁ из таблицы expenses и ОТСОРТИРУЙ по дате создания (DESC - от новых к старым)
     $stmt = $pdo->query("SELECT * FROM expenses ORDER BY created_at DESC");
     
     // Превращаем ответ базы в удобный массив PHP
