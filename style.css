@@ -106,3 +106,30 @@ button:disabled {
     text-align: right;
     color: #ff6b6b;
 }
+
+/* Кнопка перехода в историю */
+/* Кнопка перехода в историю */
+.history-btn {
+    display: block; /* Меняем с inline-block на block для центровки */
+    width: fit-content; /* Чтобы кнопка не растянулась на всю ширину экрана */
+    margin: 20px auto 30px; /* 20px отступ сверху (от Анализа), auto (по центру), 30px снизу */
+    
+    background-color: #f3f4f6;
+    color: #1f2937;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+}
+
+.history-btn:hover {
+    background-color: #e5e7eb; /* Чуть темнее при наведении */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px); /* Эффект небольшого поднятия кнопки */
+}
+
+.history-btn:active {
+    transform: translateY(0); /* Кнопка "нажимается" при клике */
+}

@@ -15,7 +15,7 @@ $userText = $request['text'];
 
 // --- НАСТРОЙКИ API ---
 // ВСТАВЬ СВОЙ КЛЮЧ СЮДА:
-$apiKey = 'AIzaSyCzD_pMcqI0rVdqPa_D-dP1jpm2qJ1MoBE'; 
+$apiKey = 'API'; 
 
 // Используем быструю модель Gemini 1.5 Flash
 $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' . $apiKey;
